@@ -76,6 +76,7 @@ public class MainActivity extends AppCompatActivity implements MovieTitleListAda
         adapter.addFragment(new HighestRatedListFragment(), getString(R.string.highest_rated));
         adapter.addFragment(new FavouriteListFragment(), getString(R.string.favourites));
         viewPager.setAdapter(adapter);
+        viewPager.setOffscreenPageLimit(3);
     }
 
     private void setupDrawerContent(NavigationView navigationView) {
