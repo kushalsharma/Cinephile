@@ -3,12 +3,14 @@ package in.kushalsharma.fragments;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.content.res.ColorStateList;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -107,7 +109,7 @@ public class MovieDetailActivityFragment extends Fragment {
             }
         });
 
-        mToolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_back));
+        mToolbar.setNavigationIcon(ContextCompat.getDrawable(getActivity(), R.drawable.ic_back));
         mToolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -185,9 +187,9 @@ public class MovieDetailActivityFragment extends Fragment {
                             .isMovieInDatabase(getActivity(),
                                     String.valueOf(movie.getId()));
                     if (isMovieInDB) {
-                        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_like));
+                        fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_like));
                     } else {
-                        fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_like_outline));
+                        fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_like_outline));
                     }
 
                     fab.show();
@@ -199,8 +201,11 @@ public class MovieDetailActivityFragment extends Fragment {
                                     .isMovieInDatabase(getActivity(),
                                             String.valueOf(movie.getId()));
                             if (isMovieInDB) {
-                                Snackbar.make(view, getResources().getString(R.string.already_in_favourites), Snackbar.LENGTH_LONG)
+                                Uri contentUri = MoviesContentProvider.CONTENT_URI;
+                                getActivity().getContentResolver().delete(contentUri, "id=?", new String[]{String.valueOf(movie.getId())});
+                                Snackbar.make(view, getResources().getString(R.string.removed_from_favourites), Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
+                                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_like_outline));
 
                             } else {
                                 ContentValues values = new ContentValues();
@@ -224,7 +229,7 @@ public class MovieDetailActivityFragment extends Fragment {
                                 Snackbar.make(view, getResources().getString(R.string.added_to_favourites), Snackbar.LENGTH_LONG)
                                         .setAction("Action", null).show();
 
-                                fab.setImageDrawable(getResources().getDrawable(R.drawable.ic_like));
+                                fab.setImageDrawable(ContextCompat.getDrawable(getActivity(), R.drawable.ic_like));
                             }
                         }
                     });

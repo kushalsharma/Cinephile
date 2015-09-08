@@ -15,7 +15,7 @@
     <string name="favourites">Favourites</string>
     <string name="movie_extra_subject">Hey! Movie suggestion for you :)</string>
     <string name="added_to_favourites">Movie added to favourites!</string>
-    <string name="already_in_favourites">Movie already in favourites.</string>
+    <string name="removed_from_favourites">Movie removed from favourites.</string>
     <string name="share_via">Share Via</string>
     <string name="release_date">"Release Date - "</string>
     <string name="duration">"Duration - "</string>

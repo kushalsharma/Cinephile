@@ -168,7 +168,7 @@ public class MainActivity extends AppCompatActivity implements MovieTitleListAda
         if (requestCode == 1234 && resultCode == RESULT_OK) {
             ArrayList<String> matches = data
                     .getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
-            search.populateEditText(matches);
+            search.setSearchString(matches.get(0));
         }
         super.onActivityResult(requestCode, resultCode, data);
     }

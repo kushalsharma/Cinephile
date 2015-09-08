@@ -14,7 +14,6 @@ import com.android.volley.toolbox.NetworkImageView;
 import java.util.ArrayList;
 
 import in.kushalsharma.cinephile.FavouriteMovieDetailActivity;
-import in.kushalsharma.cinephile.MovieDetailActivity;
 import in.kushalsharma.cinephile.R;
 import in.kushalsharma.models.Movie;
 import in.kushalsharma.utils.AppController;
